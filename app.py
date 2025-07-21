@@ -8,14 +8,20 @@ import google.generativeai as genai
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 # Initialize the Generative Model
-model = genai.GenerativeModel('gemini-1.5-flash')
+model = genai.GenerativeModel('gemini-2.5-flash')
 
 def get_gemini_response(user_input):
     chat = model.start_chat(history=[])
     response = chat.send_message(user_input)
     return response.text
 
-st.title("Gimibot")
+st.markdown(
+    """
+    <h1 style='text-align: center; color: #2E8B57;'>🤖 GimiBot</h1>
+    <p style='text-align: center; color: #ffff;'>Ask anything and get instant answers!</p>
+    """,
+    unsafe_allow_html=True
+)
 st.write("Ask anything.")
 
 with st.form(key="chat_form", clear_on_submit=True):
